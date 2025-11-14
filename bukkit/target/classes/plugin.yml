@@ -1,0 +1,18 @@
+name: AQ3AntiCheat
+version: 1.0.0
+main: cn.aq3.anticheat.bukkit.AQ3Bukkit
+api-version: 1.13
+author: AQ3DevTeam
+description: 新一代反作弊AQ3 - Advanced Anti-Cheat System
+website: https://github.com/AQ3AntiCheat
+
+commands:
+  aq3:
+    description: AQ3反作弊主命令
+    usage: /<command> [reload|version]
+    permission: aq3.admin
+    
+permissions:
+  aq3.admin:
+    description: AQ3反作弊管理员权限
+    default: op

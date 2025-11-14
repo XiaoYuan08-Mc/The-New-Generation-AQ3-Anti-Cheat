@@ -1,0 +1,5 @@
+cn\aq3\anticheat\bukkit\PlayerListener.class
+cn\aq3\anticheat\bukkit\AQ3Command.class
+cn\aq3\anticheat\bukkit\util\HackerDisplay.class
+cn\aq3\anticheat\bukkit\AQ3Bukkit.class
+cn\aq3\anticheat\bukkit\ban\AdvancedBanHandler.class

@@ -1,0 +1,70 @@
+# AQ3反作弊管理员配置文件
+# AQ3 Anti-Cheat Admin Configuration File
+
+# 管理员列表
+# Admin list
+admins:
+  - "admin_player_name"
+  - "another_admin_name"
+
+# 免疫玩家列表（不会被检测或处罚）
+# Immune player list (will not be checked or punished)
+immune-players:
+  - "trusted_player_name"
+  - "another_trusted_player"
+
+# 处罚设置
+# Punishment Settings
+punishments:
+  # 发现作弊立即封禁
+  # Ban immediately when cheating is detected
+  ban-on-detection: true
+  
+  # 封禁时长（以天为单位，-1表示永久封禁）
+  # Ban duration (in days, -1 for permanent ban)
+  ban-duration: -1
+  
+  # 封禁原因
+  # Ban reason
+  ban-reason: "[AQAC] 作弊行为检测"
+  
+  # 广播封禁消息
+  # Broadcast ban message
+  broadcast-ban: true
+
+# 日志设置
+# Logging Settings
+logging:
+  # 启用详细日志
+  # Enable detailed logging
+  verbose: true
+  
+  # 日志文件路径
+  # Log file path
+  log-file: "logs/aq3-anticheat.log"
+  
+  # 保留日志天数
+  # Keep logs for days
+  log-retention: 30
+
+# 通知设置
+# Notification Settings
+notifications:
+  # 向管理员发送作弊通知
+  # Send cheat notifications to admins
+  notify-admins: true
+
+# 硬件标识设置
+# Hardware Identifier Settings
+hwid:
+  # 启用硬件标识检测
+  # Enable hardware identifier detection
+  enabled: true
+  
+  # 封禁时同时封禁硬件标识
+  # Ban hardware identifier when banning player
+  ban-hwid-on-ban: true
+  
+  # 允许同一硬件标识的多个账户 (0表示无限制)
+  # Allow multiple accounts per hardware identifier (0 for unlimited)
+  max-accounts-per-hwid: 0

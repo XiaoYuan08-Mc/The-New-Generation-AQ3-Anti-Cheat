@@ -1,0 +1,60 @@
+# 新一代反作弊AQ3配置文件
+# Next Generation Anti-Cheat AQ3 Configuration
+
+# 基础设置
+# General Settings
+enabled: true
+debug: false
+
+# 检查设置
+# Check Settings
+checks:
+  # 移动检查
+  # Movement Checks
+  movement:
+    enabled: true
+    speed:
+      enabled: true
+      max_violations: 10
+    fly:
+      enabled: true
+      max_violations: 10
+    jesus:
+      enabled: true
+      max_violations: 10
+      
+  # 战斗检查
+  # Combat Checks
+  combat:
+    enabled: true
+    killaura:
+      enabled: true
+      max_violations: 10
+    reach:
+      enabled: true
+      max_violations: 10
+      
+  # 物品检查
+  # Inventory Checks
+  inventory:
+    enabled: true
+    fastuse:
+      enabled: true
+      max_violations: 10
+      
+  # 机器学习检查
+  # Machine Learning Checks
+  ml:
+    enabled: true
+    patternanalysis:
+      enabled: true
+      max_violations: 5
+
+# 处罚设置
+# Punishment Settings
+punishments:
+  enabled: true
+  kick_threshold: 100
+  ban_threshold: 500
+  commands:
+    - "kick %player% [AQ3] 作弊行为检测"
