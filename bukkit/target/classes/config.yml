@@ -1,0 +1,184 @@
+# AQ3反作弊配置文件
+# AQ3 Anti-Cheat Configuration File
+
+# 检查设置
+# Check settings
+checks:
+  # 移动检查
+  # Movement checks
+  movement:
+    enabled: true
+    
+    # 速度检查
+    # Speed check
+    speed:
+      enabled: true
+      max-violations: 10
+      
+    # 飞行检查
+    # Fly check
+    fly:
+      enabled: true
+      max-violations: 10
+      
+    # 水面行走检查
+    # Jesus check
+    jesus:
+      enabled: true
+      max-violations: 10
+      
+    # 计时器检查
+    # Timer check
+    timer:
+      enabled: true
+      max-violations: 10
+      
+    # 相位检查
+    # Phase check
+    phase:
+      enabled: true
+      max-violations: 10
+      
+    # 速度检查
+    # Velocity check
+    velocity:
+      enabled: true
+      max-violations: 10
+
+  # 战斗检查
+  # Combat checks
+  combat:
+    enabled: true
+    
+    # 杀戮光环检查
+    # Kill Aura check
+    killaura:
+      enabled: true
+      max-violations: 10
+      
+    # 攻击距离检查
+    # Reach check
+    reach:
+      enabled: true
+      max-violations: 10
+      
+    # 自动点击器检查
+    # Auto Clicker check
+    autoclicker:
+      enabled: true
+      max-violations: 10
+      
+    # 暴击检查
+    # Criticals check
+    criticals:
+      enabled: true
+      max-violations: 10
+      
+    # 实体交互检查
+    # Entity Interact check
+    entityinteract:
+      enabled: true
+      max-violations: 10
+
+  # 物品检查
+  # Inventory checks
+  inventory:
+    enabled: true
+    
+    # 快速使用检查
+    # Fast use check
+    fastuse:
+      enabled: true
+      max-violations: 10
+      
+    # 背包移动检查
+    # Inventory Move check
+    inventorymove:
+      enabled: true
+      max-violations: 10
+      
+  # 世界检查
+  # World checks
+  world:
+    enabled: true
+    
+    # 脚手架检查
+    # Scaffold check
+    scaffold:
+      enabled: true
+      max-violations: 10
+      
+    # 快速破坏检查
+    # Fast break check
+    fastbreak:
+      enabled: true
+      max-violations: 10
+      
+    # 范围挖掘检查
+    # Nuker check
+    nuker:
+      enabled: true
+      max-violations: 10
+
+  # 玩家检查
+  # Player checks
+  player:
+    enabled: true
+    
+    # 无摔落伤害检查
+    # NoFall check
+    nofall:
+      enabled: true
+      max-violations: 10
+      
+    # 生命值恢复检查
+    # Regen check
+    regen:
+      enabled: true
+      max-violations: 10
+      
+    # 聊天检查
+    # Chat check
+    chat:
+      enabled: true
+      max-violations: 10
+      
+  # 网络检查
+  # Network checks
+  network:
+    enabled: true
+    
+    # 延迟欺骗检查
+    # Ping Spoof check
+    pingspoof:
+      enabled: true
+      max-violations: 10
+
+# 处罚设置
+# Punishment settings
+punishments:
+  enabled: true
+  kick-threshold: 100
+  ban-threshold: 500
+  ban-on-detection: true
+  ban-duration: -1
+  ban-reason: "[AQAC] 作弊行为检测"
+  kick-message: "[AQAC] 作弊行为检测"
+  broadcast-ban: true
+  # AdvancedBan集成设置
+  # AdvancedBan integration settings
+  use-advancedban: true
+  advancedban-temp-ban-duration: 86400000 # 24小时 (24 hours in milliseconds)
+  advancedban-ban-reason: "[AQAC] 作弊行为检测"
+  advancedban-kick-reason: "[AQAC] 作弊行为检测"
+
+# 硬件标识设置
+# Hardware identifier settings
+hwid:
+  enabled: true
+  ban-hwid-on-ban: true
+  max-accounts-per-hwid: 0
+
+# 灵敏度设置 (1-5, 5为最高灵敏度)
+# Sensitivity settings (1-5, 5 is highest sensitivity)
+sensitivity: 3
