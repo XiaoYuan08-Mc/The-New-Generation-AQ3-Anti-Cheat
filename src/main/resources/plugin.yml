@@ -1,0 +1,23 @@
+name: AntiLag
+version: '1.0'
+main: cn.aq3.antilag.AntiLagPlugin
+api-version: '1.20'
+author: XiaoYuan08-Mc
+description: 一个为Paper服务器设计的性能优化插件，用于减少延迟并提高性能
+website: https://github.com/XiaoYuan08-Mc/AntiLag
+
+commands:
+  antilag:
+    description: AntiLag插件的主要命令
+    usage: /antilag [reload|stats|clear]
+    permission: antilag.admin
+    
+  opt:
+    description: 优化命令
+    usage: /opt [reload|gc|clear]
+    permission: antilag.admin
+
+permissions:
+  antilag.admin:
+    description: 允许访问所有AntiLag命令
+    default: op

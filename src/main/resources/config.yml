@@ -1,0 +1,73 @@
+# AntiLag 配置文件
+
+# 物品清理设置
+item:
+  # 物品在地面上的存活时间（ticks，20 ticks = 1秒）
+  despawn-time: 300
+  
+  # 检查间隔（ticks）
+  check-interval: 200
+
+# 实体优化设置
+entity:
+  # 箭头的清理时间（ticks）
+  arrow-despawn-time: 100
+  
+  # 其他实体的清理时间（ticks）
+  general-despawn-time: 6000
+  
+  # 每个区块的最大实体数
+  max-per-chunk: 50
+
+# 视距设置
+view-distance:
+  # 无人在线时的最小视距
+  min: 4
+  
+  # 有人在线时的最大视距
+  max: 10
+  
+  # 是否自动调整视距
+  auto-adjust: true
+
+# AFK设置
+afk:
+  # 是否启用AFK踢出功能
+  enabled: true
+  
+  # AFK踢出时间（秒，默认：15分钟）
+  kick-time: 900
+
+# 世界设置
+world:
+  # 是否在无人在线时自动保存世界
+  auto-save: true
+
+# 守护模式设置
+guardian-mode:
+  # 是否在无人在线时启用守护模式
+  enabled: true
+  
+  # 进入守护模式前的延迟时间（秒，默认：5分钟）
+  delay: 300
+
+# 移动限制设置
+movement:
+  # 是否限制鞘翅使用以防止区块过载
+  limit-elytra: true
+  
+  # 是否限制三叉戟使用以防止区块过载
+  limit-trident: true
+
+# 内存管理设置
+memory:
+  # 是否在内存使用超过阈值时自动触发GC
+  auto-gc: true
+  
+  # 触发GC的内存阈值（0.0 - 1.0）
+  gc-threshold: 0.8
+
+# 漏斗设置
+hopper:
+  # 限制漏斗传输速率以防止农场造成的延迟
+  transfer-limit: 1
