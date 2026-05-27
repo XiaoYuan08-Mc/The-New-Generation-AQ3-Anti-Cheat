@@ -85,6 +85,26 @@ public class PlayerData {
     private long lastBlockPlaceTime;
     private long lastInteractTime;
     
+    // 速度相关字段
+    // Velocity related fields
+    private double velocityTakenX;
+    private double velocityTakenY;
+    private double velocityTakenZ;
+    private long lastVelocityTime;
+    private boolean velocityModified;
+    
+    // 攻击相关字段
+    // Attack related fields
+    private int attackCount;
+    private long lastAttackEntityId;
+    
+    // 移动历史记录
+    // Movement history
+    private final double[] positionHistoryX = new double[20];
+    private final double[] positionHistoryY = new double[20];
+    private final double[] positionHistoryZ = new double[20];
+    private int historyIndex = 0;
+    
     public PlayerData(UUID uuid, String name) {
         this.uuid = uuid;
         this.name = name;
@@ -143,6 +163,24 @@ public class PlayerData {
         this.sprinting = false;
         this.lastBlockPlaceTime = 0;
         this.lastInteractTime = 0;
+        
+        // 初始化速度相关字段
+        this.velocityTakenX = 0;
+        this.velocityTakenY = 0;
+        this.velocityTakenZ = 0;
+        this.lastVelocityTime = 0;
+        this.velocityModified = false;
+        
+        // 初始化攻击相关字段
+        this.attackCount = 0;
+        this.lastAttackEntityId = -1;
+        
+        // 初始化移动历史
+        for (int i = 0; i < 20; i++) {
+            this.positionHistoryX[i] = 0;
+            this.positionHistoryY[i] = 0;
+            this.positionHistoryZ[i] = 0;
+        }
     }
     
     // Getters and setters
@@ -416,6 +454,88 @@ public class PlayerData {
         } else if (y < lastY) {
             this.fallDistance += (lastY - y);
         }
+        
+        // 保存移动历史记录
+        // Save movement history
+        this.positionHistoryX[historyIndex] = x;
+        this.positionHistoryY[historyIndex] = y;
+        this.positionHistoryZ[historyIndex] = z;
+        this.historyIndex = (historyIndex + 1) % 20;
+    }
+    
+    // Velocity related getters and setters
+    public double getVelocityTakenX() {
+        return velocityTakenX;
+    }
+    
+    public void setVelocityTakenX(double velocityTakenX) {
+        this.velocityTakenX = velocityTakenX;
+    }
+    
+    public double getVelocityTakenY() {
+        return velocityTakenY;
+    }
+    
+    public void setVelocityTakenY(double velocityTakenY) {
+        this.velocityTakenY = velocityTakenY;
+    }
+    
+    public double getVelocityTakenZ() {
+        return velocityTakenZ;
+    }
+    
+    public void setVelocityTakenZ(double velocityTakenZ) {
+        this.velocityTakenZ = velocityTakenZ;
+    }
+    
+    public long getLastVelocityTime() {
+        return lastVelocityTime;
+    }
+    
+    public void setLastVelocityTime(long lastVelocityTime) {
+        this.lastVelocityTime = lastVelocityTime;
+    }
+    
+    public boolean isVelocityModified() {
+        return velocityModified;
+    }
+    
+    public void setVelocityModified(boolean velocityModified) {
+        this.velocityModified = velocityModified;
+    }
+    
+    // Attack related getters and setters
+    public int getAttackCount() {
+        return attackCount;
+    }
+    
+    public void setAttackCount(int attackCount) {
+        this.attackCount = attackCount;
+    }
+    
+    public long getLastAttackEntityId() {
+        return lastAttackEntityId;
+    }
+    
+    public void setLastAttackEntityId(long lastAttackEntityId) {
+        this.lastAttackEntityId = lastAttackEntityId;
+    }
+    
+    // Position history getters
+    public double[] getPositionHistoryX() {
+        return positionHistoryX;
+    }
+    
+    public double[] getPositionHistoryY() {
+        return positionHistoryY;
+    }
+    
+    public double[] getPositionHistoryZ() {
+        return positionHistoryZ;
+    }
+    
+    public int getHistoryIndex() {
+        return historyIndex;
     }
     
     /**

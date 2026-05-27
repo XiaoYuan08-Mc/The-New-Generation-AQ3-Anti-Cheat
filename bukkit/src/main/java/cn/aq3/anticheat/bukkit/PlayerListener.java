@@ -232,6 +232,9 @@ public class PlayerListener implements Listener {
         }
     }
     
+    // 待添加：EntityVelocityEvent 监听器（需要正确的API版本支持）
+    // TODO: Add EntityVelocityEvent listener (requires correct API version support)
+    
     @EventHandler
     public void onPlayerItemConsume(PlayerItemConsumeEvent event) {
         Player player = event.getPlayer();
