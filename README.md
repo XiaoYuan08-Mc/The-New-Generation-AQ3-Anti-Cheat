@@ -1,30 +1,52 @@
-<div align="center">
-  <br>
-  <div style="display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 20px;">
-    <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #e94560 0%, #c73659 100%); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 48px; font-weight: bold; box-shadow: 0 10px 40px rgba(233, 69, 96, 0.3);">
-      🛡️
-    </div>
-    <div>
-      <h1 style="font-size: 48px; font-weight: 900; letter-spacing: -2px; margin: 0;">
-        <span style="color: #ffffff;">AQ</span><span style="color: #e94560;">3</span>
-      </h1>
-      <div style="font-size: 18px; color: #a0a0b0; margin-top: 10px; font-weight: 500;">
-        新一代反作弊系统
+<div align="center" style="background: #0a0a0a; padding: 60px 20px; border-radius: 20px; margin: 20px 0; position: relative; overflow: hidden;">
+  <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #dc143c, #ff4500, #dc143c);"></div>
+  <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #dc143c, #ff4500, #dc143c);"></div>
+  
+  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; z-index: 1;">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 30px; margin-bottom: 30px;">
+      <div style="width: 140px; height: 140px; background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); border: 4px solid #dc143c; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 60px rgba(220, 20, 60, 0.6), inset 0 0 30px rgba(220, 20, 60, 0.2); position: relative;">
+        <div style="position: absolute; width: 120px; height: 120px; border: 2px solid rgba(220, 20, 60, 0.3); border-radius: 50%; animation: pulse-border 2s ease-in-out infinite;"></div>
+        <svg width="70" height="70" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L3 7V12C3 16.5 6.84 20.74 12 22C17.16 20.74 21 16.5 21 12V7L12 2Z" fill="#dc143c" stroke="#ff4500" stroke-width="1.5"/>
+          <path d="M9 12L11 14L15 10" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      
+      <div style="text-align: left;">
+        <h1 style="font-size: 72px; font-weight: 900; letter-spacing: -4px; margin: 0; line-height: 1; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+          <span style="color: #ffffff; text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);">AQ</span><span style="color: #dc143c; text-shadow: 0 0 30px rgba(220, 20, 60, 0.8);">3</span>
+        </h1>
+        <div style="font-size: 22px; color: #dc143c; margin-top: 15px; font-weight: 700; letter-spacing: 8px; text-transform: uppercase;">
+          新一代反作弊系统
+        </div>
       </div>
     </div>
-  </div>
 
-  <div style="font-size: 24px; font-weight: 700; margin: 30px 0; color: #e94560;">
-    精确检测 · 高性能 · 零误判
-  </div>
+    <div style="font-size: 28px; font-weight: 800; margin: 40px 0 30px 0; color: #ffffff; letter-spacing: 3px;">
+      <span style="color: #dc143c;">⚡</span> 精确检测 · 高性能 · 零误判 <span style="color: #dc143c;">⚡</span>
+    </div>
 
-  <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 50px;">
-    <span style="padding: 8px 16px; border-radius: 6px; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; background: #333; color: #fff;">BUILD</span>
-    <span style="padding: 8px 16px; border-radius: 6px; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; background: #00d4aa; color: #000;">PASSING</span>
-    <span style="padding: 8px 16px; border-radius: 6px; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; background: #e94560; color: #fff;">V1.0.0-BETA</span>
-    <span style="padding: 8px 16px; border-radius: 6px; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; background: #007bff; color: #fff;">GPL-3.0</span>
+    <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+      <span style="padding: 12px 24px; border-radius: 4px; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; background: #1a1a1a; color: #dc143c; border: 2px solid #dc143c;">BUILD</span>
+      <span style="padding: 12px 24px; border-radius: 4px; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; background: #dc143c; color: #ffffff; box-shadow: 0 0 20px rgba(220, 20, 60, 0.5);">PASSING</span>
+      <span style="padding: 12px 24px; border-radius: 4px; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; background: #1a1a1a; color: #ffffff; border: 2px solid #333;">V1.0.0-BETA</span>
+      <span style="padding: 12px 24px; border-radius: 4px; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; background: #1a1a1a; color: #dc143c; border: 2px solid #dc143c;">GPL-3.0</span>
+    </div>
   </div>
 </div>
+
+<style>
+@keyframes pulse-border {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0;
+  }
+}
+</style>
 
 ---
 
