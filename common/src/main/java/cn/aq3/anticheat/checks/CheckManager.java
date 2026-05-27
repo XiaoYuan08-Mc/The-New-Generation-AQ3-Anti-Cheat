@@ -8,6 +8,7 @@ import cn.aq3.anticheat.checks.movement.*;
 import cn.aq3.anticheat.checks.network.PingSpoofCheck;
 import cn.aq3.anticheat.checks.player.*;
 import cn.aq3.anticheat.checks.world.*;
+import cn.aq3.anticheat.checks.probability.ProbabilityCheck;
 import cn.aq3.anticheat.ml.CheatPatternDetector;
 import cn.aq3.anticheat.player.PlayerData;
 
@@ -60,13 +61,18 @@ public class CheckManager {
         checks.add(new TeleportCheck());
         checks.add(new StepCheck());
         checks.add(new ExperienceCheck());
-    checks.add(new FoodCheck());
-    checks.add(new HealthCheck());
-    checks.add(new BlockPlaceCheck());
-    checks.add(new ExcavationCheck());
-    checks.add(new FastDigCheck());
-    checks.add(new XrayCheck());
-}
+        checks.add(new FoodCheck());
+        checks.add(new HealthCheck());
+        checks.add(new BlockPlaceCheck());
+        checks.add(new ExcavationCheck());
+        checks.add(new FastDigCheck());
+        checks.add(new XrayCheck());
+        
+        // GrimAc风格的新检测
+        checks.add(new PrecisionReachCheck());
+        checks.add(new ProbabilityCheck());
+        checks.add(new PredictionMovementCheck());
+    }
     
     /**
      * 对玩家执行所有启用的检查

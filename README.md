@@ -5,11 +5,11 @@
 ## 新一代反作弊系统
 
 [![Build](https://img.shields.io/badge/Build-passing-red?style=for-the-badge)](https://github.com/XiaoYuan08-Mc/The-New-Generation-AQ3-Anti-Cheat)
-[![Version](https://img.shields.io/badge/VERSION-1.2.0-black?style=for-the-badge)](https://github.com/XiaoYuan08-Mc/The-New-Generation-AQ3-Anti-Cheat)
+[![Version](https://img.shields.io/badge/VERSION-1.3.0-black?style=for-the-badge)](https://github.com/XiaoYuan08-Mc/The-New-Generation-AQ3-Anti-Cheat)
 [![Minecraft](https://img.shields.io/badge/Minecraft-1.21.x-red?style=for-the-badge)](https://github.com/XiaoYuan08-Mc/The-New-Generation-AQ3-Anti-Cheat)
 [![License](https://img.shields.io/badge/LICENSE-GPL--3.0-red?style=for-the-badge)](https://github.com/XiaoYuan08-Mc/The-New-Generation-AQ3-Anti-Cheat/blob/main/LICENSE)
 
-### ⚡ 精确检测 · 高性能 · 零误判 · 1.21.x支持 ⚡
+### ⚡ 精确检测 · GrimAc风格 · 运动预测 · 概率系统 ⚡
 
 </div>
 
@@ -62,11 +62,15 @@
 - 🧪 **精确的运动模拟引擎** - 1:1复制玩家所有可能动作
 - 🔄 **跨版本兼容性** - 支持多种Minecraft版本
 - ⚡ **高性能架构** - 异步和多线程设计，世界复制系统
-- 📊 **全面的检测类别** - 超过30种检测模块
+- 📊 **全面的检测类别** - 超过35种检测模块
 - 🪪 **硬件标识检测** - HWID封禁系统，防止小号
 - 🔗 **AdvancedBan集成** - 与AdvancedBan无缝对接
 - 🎯 **可配置的检测灵敏度** - 支持多种检测灵敏度设置
 - 💾 **数据持久化** - 使用YAML格式保存配置和数据
+- 📈 **GrimAc风格检测** - 精确运动预测、概率检测系统
+- 🎯 **精确Reach检测** - 精准攻击距离计算
+- 📊 **概率检测系统** - 使用统计学分析作弊概率
+- 🔮 **运动预测引擎** - 预测玩家下一步位置并验证
 
 ---
 
@@ -133,7 +137,16 @@ AQ3 AntiCheat
 
 ## 📝 更新日志
 
-### v1.2.0 (最新)
+### v1.3.0 (最新)
+- 🎮 添加 GrimAc风格的精确检测系统
+- 📈 新增 精确Reach检测 (PrecisionReachCheck)
+- 📊 新增 概率检测系统 (ProbabilityCheck)
+- 🔮 新增 运动预测引擎 (PredictionEngine)
+- 📋 新增 预测运动检测 (PredictionMovementCheck)
+- 🧠 改进 作弊检测逻辑，降低误判率
+- 🔧 优化 CheckManager，新增3种检测
+
+### v1.2.0
 - 🎮 更新 支持 Minecraft 1.21.x
 - 📦 升级 Paper API 到 1.21.3-R0.1-SNAPSHOT
 - 🔧 优化 插件配置，api-version 设定为 1.21
