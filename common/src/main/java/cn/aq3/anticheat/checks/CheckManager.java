@@ -42,21 +42,29 @@ public class CheckManager {
         checks.add(new FastUseCheck());
         checks.add(new TimerCheck());
         checks.add(new AutoClickerCheck());
-        checks.add(new NoFallCheck()); // 添加无摔落伤害检查 / Add no fall check
-        checks.add(new PhaseCheck()); // 添加相位检查 / Add phase check
-        checks.add(new VelocityCheck()); // 添加速度检查 / Add velocity check
-        checks.add(new CriticalsCheck()); // 添加暴击检查 / Add criticals check
-        checks.add(new ScaffoldCheck()); // 添加脚手架检查 / Add scaffold check
-        checks.add(new FastBreakCheck()); // 添加快速破坏检查 / Add fast break check
-        checks.add(new RegenCheck()); // 添加生命值恢复检查 / Add regen check
-        checks.add(new InventoryMoveCheck()); // 添加背包移动检查 / Add inventory move check
-        checks.add(new EntityInteractCheck()); // 添加实体交互检查 / Add entity interact check
-        checks.add(new ChatCheck()); // 添加聊天检查 / Add chat check
-        checks.add(new NukerCheck()); // 添加范围挖掘检查 / Add nuker check
-        checks.add(new PingSpoofCheck()); // 添加延迟欺骗检查 / Add ping spoof check
+        checks.add(new NoFallCheck());
+        checks.add(new PhaseCheck());
+        checks.add(new VelocityCheck());
+        checks.add(new CriticalsCheck());
+        checks.add(new ScaffoldCheck());
+        checks.add(new FastBreakCheck());
+        checks.add(new RegenCheck());
+        checks.add(new InventoryMoveCheck());
+        checks.add(new EntityInteractCheck());
+        checks.add(new ChatCheck());
+        checks.add(new NukerCheck());
+        checks.add(new PingSpoofCheck());
         checks.add(new PatternAnalysisCheck(patternDetector));
-        // 可以添加更多检查...
-        // Can add more checks...
+        
+        checks.add(new ElytraCheck());
+        checks.add(new TeleportCheck());
+        checks.add(new StepCheck());
+        checks.add(new ExperienceCheck());
+        checks.add(new FoodCheck());
+        checks.add(new HealthCheck());
+        checks.add(new BlockPlaceCheck());
+        checks.add(new ExcavationCheck());
+        checks.add(new FastDigCheck());
     }
     
     /**

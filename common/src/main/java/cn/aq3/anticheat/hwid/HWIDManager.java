@@ -1,6 +1,10 @@
 package cn.aq3.anticheat.hwid;
 
 import cn.aq3.anticheat.AQ3API;
+import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.SafeConstructor;
+import org.yaml.snakeyaml.LoaderOptions;
+
 import java.io.*;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -8,43 +12,31 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
-/**
- * 硬件标识管理器
- * Hardware Identification Manager
- */
 public class HWIDManager {
     private final Map<String, Set<String>> hwidToPlayers = new HashMap<>();
     private final Map<String, String> playerToHWID = new HashMap<>();
     private final Set<String> bannedHWIDs = new HashSet<>();
     private final String hwidDataFile;
+    private final Yaml yaml;
     
     public HWIDManager(String dataFile) {
         this.hwidDataFile = dataFile;
+        this.yaml = new Yaml(new SafeConstructor(new LoaderOptions()));
         loadData();
     }
     
-    /**
-     * 获取玩家的硬件标识
-     * Get player's hardware identifier
-     */
     public String getPlayerHWID(String playerName) {
         return playerToHWID.get(playerName);
     }
     
-    /**
-     * 生成硬件标识
-     * Generate hardware identifier
-     */
     public String generateHWID() {
         try {
             StringBuilder sb = new StringBuilder();
             
-            // 获取系统属性
             sb.append(System.getProperty("os.name"));
             sb.append(System.getProperty("os.arch"));
             sb.append(System.getProperty("os.version"));
             
-            // 获取网络接口信息
             try {
                 Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
                 while (networkInterfaces.hasMoreElements()) {
@@ -57,14 +49,11 @@ public class HWIDManager {
                     }
                 }
             } catch (SocketException e) {
-                // 如果无法获取网络接口信息，则跳过
             }
             
-            // 获取系统环境变量
             sb.append(System.getenv("PROCESSOR_IDENTIFIER"));
             sb.append(System.getenv("COMPUTERNAME"));
             
-            // 生成MD5哈希作为硬件标识
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(sb.toString().getBytes());
             byte[] digest = md.digest();
@@ -76,7 +65,6 @@ public class HWIDManager {
             
             return hexString.toString();
         } catch (NoSuchAlgorithmException e) {
-            // 如果MD5不可用，则使用简单哈希
             return Integer.toHexString(Objects.hash(
                 System.getProperty("os.name"),
                 System.getProperty("os.arch"),
@@ -87,57 +75,70 @@ public class HWIDManager {
         }
     }
     
-    /**
-     * 注册玩家的硬件标识
-     * Register player's hardware identifier
-     */
     public void registerPlayerHWID(String playerName, String hwid) {
         playerToHWID.put(playerName, hwid);
         hwidToPlayers.computeIfAbsent(hwid, k -> new HashSet<>()).add(playerName);
         saveData();
     }
     
-    /**
-     * 检查硬件标识是否被封禁
-     * Check if hardware identifier is banned
-     */
     public boolean isHWIDBanned(String hwid) {
         return bannedHWIDs.contains(hwid);
     }
     
-    /**
-     * 封禁硬件标识
-     * Ban hardware identifier
-     */
     public void banHWID(String hwid) {
         bannedHWIDs.add(hwid);
         saveData();
     }
     
-    /**
-     * 解封硬件标识
-     * Unban hardware identifier
-     */
     public void unbanHWID(String hwid) {
         bannedHWIDs.remove(hwid);
         saveData();
     }
     
-    /**
-     * 获取使用相同硬件标识的玩家列表
-     * Get list of players using the same hardware identifier
-     */
     public Set<String> getPlayersWithHWID(String hwid) {
         return new HashSet<>(hwidToPlayers.getOrDefault(hwid, new HashSet<>()));
     }
     
-    /**
-     * 加载数据
-     * Load data
-     */
     @SuppressWarnings("unchecked")
     private void loadData() {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(hwidDataFile))) {
+        File file = new File(hwidDataFile);
+        File oldFile = new File(hwidDataFile.replace(".yml", ".dat"));
+        
+        if (oldFile.exists() && !file.exists()) {
+            migrateFromOldFormat(oldFile);
+        }
+        
+        if (!file.exists()) {
+            return;
+        }
+        
+        try (Reader reader = new FileReader(file)) {
+            Map<String, Object> data = yaml.load(reader);
+            
+            if (data != null) {
+                if (data.containsKey("hwidToPlayers")) {
+                    Map<String, List<String>> raw = (Map<String, List<String>>) data.get("hwidToPlayers");
+                    for (Map.Entry<String, List<String>> entry : raw.entrySet()) {
+                        hwidToPlayers.put(entry.getKey(), new HashSet<>(entry.getValue()));
+                    }
+                }
+                
+                if (data.containsKey("playerToHWID")) {
+                    playerToHWID.putAll((Map<String, String>) data.get("playerToHWID"));
+                }
+                
+                if (data.containsKey("bannedHWIDs")) {
+                    bannedHWIDs.addAll((List<String>) data.get("bannedHWIDs"));
+                }
+            }
+        } catch (IOException e) {
+            logError("Failed to load HWID data: " + e.getMessage());
+        }
+    }
+    
+    @SuppressWarnings("unchecked")
+    private void migrateFromOldFormat(File oldFile) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(oldFile))) {
             Map<String, Object> data = (Map<String, Object>) ois.readObject();
             
             if (data.containsKey("hwidToPlayers")) {
@@ -151,40 +152,52 @@ public class HWIDManager {
             if (data.containsKey("bannedHWIDs")) {
                 bannedHWIDs.addAll((Set<String>) data.get("bannedHWIDs"));
             }
+            
+            saveData();
+            oldFile.delete();
+            logError("Migrated HWID data from old format to YAML");
         } catch (IOException | ClassNotFoundException e) {
-            // 文件不存在或损坏，使用默认空数据
-            AQ3API.getInstance().getCheatLogger().logEvent("HWID data file not found or corrupted, using empty data");
+            logError("Failed to migrate HWID data from old format: " + e.getMessage());
         }
     }
     
-    /**
-     * 保存数据
-     * Save data
-     */
     public void saveData() {
         try {
-            // 确保目录存在
             File file = new File(hwidDataFile);
             if (!file.getParentFile().exists()) {
                 file.getParentFile().mkdirs();
             }
             
-            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(hwidDataFile))) {
-                Map<String, Object> data = new HashMap<>();
-                data.put("hwidToPlayers", hwidToPlayers);
-                data.put("playerToHWID", playerToHWID);
-                data.put("bannedHWIDs", bannedHWIDs);
-                oos.writeObject(data);
+            Map<String, Object> data = new HashMap<>();
+            Map<String, List<String>> hwidToList = new HashMap<>();
+            for (Map.Entry<String, Set<String>> entry : hwidToPlayers.entrySet()) {
+                hwidToList.put(entry.getKey(), new ArrayList<>(entry.getValue()));
+            }
+            
+            data.put("hwidToPlayers", hwidToList);
+            data.put("playerToHWID", playerToHWID);
+            data.put("bannedHWIDs", new ArrayList<>(bannedHWIDs));
+            
+            try (Writer writer = new FileWriter(file)) {
+                yaml.dump(data, writer);
             }
         } catch (IOException e) {
-            AQ3API.getInstance().getCheatLogger().logEvent("Failed to save HWID data: " + e.getMessage());
+            logError("Failed to save HWID data: " + e.getMessage());
         }
     }
     
-    /**
-     * 获取所有被封禁的硬件标识
-     * Get all banned hardware identifiers
-     */
+    private void logError(String message) {
+        try {
+            if (AQ3API.isInitialized()) {
+                AQ3API.getInstance().getCheatLogger().logEvent(message);
+            } else {
+                System.err.println("[AQ3] " + message);
+            }
+        } catch (Exception e) {
+            System.err.println("[AQ3] " + message);
+        }
+    }
+    
     public Set<String> getBannedHWIDs() {
         return new HashSet<>(bannedHWIDs);
     }

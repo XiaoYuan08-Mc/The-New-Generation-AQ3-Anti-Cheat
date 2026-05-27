@@ -6,6 +6,10 @@
 enabled: true
 debug: false
 
+# 全局灵敏度设置 (1-5, 1最宽松, 5最严格)
+# Global sensitivity setting (1-5, 1=most lenient, 5=most strict)
+sensitivity: 3
+
 # 检查设置
 # Check Settings
 checks:
@@ -16,13 +20,40 @@ checks:
     speed:
       enabled: true
       max_violations: 10
+      threshold: 1.5
     fly:
       enabled: true
       max_violations: 10
+      threshold: 0.5
     jesus:
       enabled: true
       max_violations: 10
-      
+      threshold: 0.3
+    timer:
+      enabled: true
+      max_violations: 8
+      threshold: 1.1
+    phase:
+      enabled: true
+      max_violations: 15
+      threshold: 0.1
+    velocity:
+      enabled: true
+      max_violations: 8
+      threshold: 0.8
+    elytra:
+      enabled: true
+      max_violations: 15
+      threshold: 2.0
+    teleport:
+      enabled: true
+      max_violations: 5
+      threshold: 10.0
+    step:
+      enabled: true
+      max_violations: 10
+      threshold: 1.0
+
   # 战斗检查
   # Combat Checks
   combat:
@@ -30,10 +61,24 @@ checks:
     killaura:
       enabled: true
       max_violations: 10
+      threshold: 3.0
     reach:
       enabled: true
       max_violations: 10
-      
+      threshold: 3.5
+    autoclicker:
+      enabled: true
+      max_violations: 12
+      threshold: 15.0
+    criticals:
+      enabled: true
+      max_violations: 8
+      threshold: 0.5
+    entity_interact:
+      enabled: true
+      max_violations: 8
+      threshold: 1.0
+
   # 物品检查
   # Inventory Checks
   inventory:
@@ -41,14 +86,87 @@ checks:
     fastuse:
       enabled: true
       max_violations: 10
-      
+      threshold: 0.1
+    inventory_move:
+      enabled: true
+      max_violations: 10
+      threshold: 50.0
+
+  # 玩家检查
+  # Player Checks
+  player:
+    enabled: true
+    chat:
+      enabled: false
+      max_violations: 10
+      threshold: 10.0
+    nofall:
+      enabled: true
+      max_violations: 8
+      threshold: 3.0
+    regen:
+      enabled: true
+      max_violations: 8
+      threshold: 20.0
+    experience:
+      enabled: true
+      max_violations: 8
+      threshold: 100.0
+    food:
+      enabled: true
+      max_violations: 8
+      threshold: 4.0
+    health:
+      enabled: true
+      max_violations: 8
+      threshold: 4.0
+
+  # 世界检查
+  # World Checks
+  world:
+    enabled: true
+    fastbreak:
+      enabled: true
+      max_violations: 10
+      threshold: 0.1
+    nuker:
+      enabled: true
+      max_violations: 12
+      threshold: 10.0
+    scaffold:
+      enabled: true
+      max_violations: 10
+      threshold: 5.0
+    block_place:
+      enabled: true
+      max_violations: 10
+      threshold: 50.0
+    excavation:
+      enabled: true
+      max_violations: 12
+      threshold: 20.0
+    fast_dig:
+      enabled: true
+      max_violations: 10
+      threshold: 0.1
+
+  # 网络检查
+  # Network Checks
+  network:
+    enabled: true
+    ping_spoof:
+      enabled: true
+      max_violations: 15
+      threshold: 100.0
+
   # 机器学习检查
   # Machine Learning Checks
   ml:
     enabled: true
-    patternanalysis:
+    pattern_analysis:
       enabled: true
       max_violations: 5
+      threshold: 0.8
 
 # 处罚设置
 # Punishment Settings
@@ -56,5 +174,66 @@ punishments:
   enabled: true
   kick_threshold: 100
   ban_threshold: 500
+  ban_on_detection: false
+  broadcast_ban: true
+  kick_message: "[AQ3] 作弊行为检测"
+  ban_message: "[AQ3] 作弊行为检测 - 已封禁"
   commands:
     - "kick %player% [AQ3] 作弊行为检测"
+  advancedban:
+    enabled: false
+    type: "PERMANENT"
+    reason: "作弊行为检测 - AQ3 AntiCheat"
+    temp_ban_duration: 86400000
+
+# HWID设置
+# HWID Settings
+hwid:
+  enabled: true
+  ban_hwid: false
+  ban_hwid_on_ban: true
+  max_accounts_per_hwid: 5
+  data_file: "plugins/AQ3AntiCheat/hwid.yml"
+
+# Web服务器设置
+# Web Server Settings
+web_server:
+  enabled: false
+  port: 8080
+  bind_address: "0.0.0.0"
+
+# 日志设置
+# Logging Settings
+logging:
+  enabled: true
+  log_violations: true
+  log_punishments: true
+  log_file: "plugins/AQ3AntiCheat/logs/aq3.log"
+
+# 误判保护设置
+# False Positive Protection Settings
+false_positive_protection:
+  enabled: true
+  grace_period_seconds: 30
+  min_play_time_seconds: 60
+  allow_op_bypass: true
+  allow_permission_bypass: false
+  bypass_permission: "aq3.bypass"
+
+# 统计设置
+# Statistics Settings
+statistics:
+  enabled: true
+  track_violations: true
+  track_check_times: true
+  max_recent_violations: 100
+
+# 安全设置
+# Security Settings
+security:
+  enabled: true
+  validate_player_names: true
+  validate_commands: true
+  validate_hwid: true
+  enable_command_whitelist: false
+  enable_ip_whitelist: false

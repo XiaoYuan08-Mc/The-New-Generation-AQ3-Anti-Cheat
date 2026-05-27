@@ -44,6 +44,37 @@ public class PlayerData {
     private double lastLastY; // 上上一帧的Y坐标 / Y coordinate of the frame before last
     private double fallDistance; // 摔落距离 / Fall distance
     
+    // 鞘翅飞行
+    // Elytra flying
+    private boolean flyingWithElytra;
+    
+    // 传送相关
+    // Teleport related
+    private long lastTeleportTime;
+    private long lastEnderPearlTime;
+    
+    // 玩家属性
+    // Player attributes
+    private double health;
+    private double lastHealth;
+    private double experience;
+    private double lastExperience;
+    private int foodLevel;
+    private int lastFoodLevel;
+    
+    // 时间戳
+    // Timestamps
+    private long lastHealTime;
+    private long lastEatTime;
+    private long lastDigTime;
+    
+    // 方块计数
+    // Block counters
+    private int blockPlaceCount;
+    private long lastPlaceCheckTime;
+    private int blockBreakCount;
+    private long lastBreakCheckTime;
+    
     public PlayerData(UUID uuid, String name) {
         this.uuid = uuid;
         this.name = name;
@@ -78,6 +109,24 @@ public class PlayerData {
         this.lastVelocityY = 0;
         this.lastVelocityZ = 0;
         this.fallDistance = 0;
+        
+        // 初始化新增字段
+        this.flyingWithElytra = false;
+        this.lastTeleportTime = 0;
+        this.lastEnderPearlTime = 0;
+        this.health = 20.0;
+        this.lastHealth = 20.0;
+        this.experience = 0;
+        this.lastExperience = 0;
+        this.foodLevel = 20;
+        this.lastFoodLevel = 20;
+        this.lastHealTime = 0;
+        this.lastEatTime = 0;
+        this.lastDigTime = 0;
+        this.blockPlaceCount = 0;
+        this.lastPlaceCheckTime = 0;
+        this.blockBreakCount = 0;
+        this.lastBreakCheckTime = 0;
     }
     
     // Getters and setters
@@ -389,5 +438,132 @@ public class PlayerData {
      */
     public double getVerticalDistance() {
         return y - lastY;
+    }
+    
+    // Elytra flying methods
+    public boolean isFlyingWithElytra() {
+        return flyingWithElytra;
+    }
+    
+    public void setFlyingWithElytra(boolean flyingWithElytra) {
+        this.flyingWithElytra = flyingWithElytra;
+    }
+    
+    // Teleport methods
+    public long getLastTeleportTime() {
+        return lastTeleportTime;
+    }
+    
+    public void setLastTeleportTime(long lastTeleportTime) {
+        this.lastTeleportTime = lastTeleportTime;
+    }
+    
+    public long getLastEnderPearlTime() {
+        return lastEnderPearlTime;
+    }
+    
+    public void setLastEnderPearlTime(long lastEnderPearlTime) {
+        this.lastEnderPearlTime = lastEnderPearlTime;
+    }
+    
+    // Health methods
+    public double getHealth() {
+        return health;
+    }
+    
+    public void setHealth(double health) {
+        this.lastHealth = this.health;
+        this.health = health;
+    }
+    
+    public double getLastHealth() {
+        return lastHealth;
+    }
+    
+    public long getLastHealTime() {
+        return lastHealTime;
+    }
+    
+    public void setLastHealTime(long lastHealTime) {
+        this.lastHealTime = lastHealTime;
+    }
+    
+    // Experience methods
+    public double getExperience() {
+        return experience;
+    }
+    
+    public void setExperience(double experience) {
+        this.lastExperience = this.experience;
+        this.experience = experience;
+    }
+    
+    public double getLastExperience() {
+        return lastExperience;
+    }
+    
+    // Food methods
+    public int getFoodLevel() {
+        return foodLevel;
+    }
+    
+    public void setFoodLevel(int foodLevel) {
+        this.lastFoodLevel = this.foodLevel;
+        this.foodLevel = foodLevel;
+    }
+    
+    public int getLastFoodLevel() {
+        return lastFoodLevel;
+    }
+    
+    public long getLastEatTime() {
+        return lastEatTime;
+    }
+    
+    public void setLastEatTime(long lastEatTime) {
+        this.lastEatTime = lastEatTime;
+    }
+    
+    // Dig methods
+    public long getLastDigTime() {
+        return lastDigTime;
+    }
+    
+    public void setLastDigTime(long lastDigTime) {
+        this.lastDigTime = lastDigTime;
+    }
+    
+    // Block place methods
+    public int getBlockPlaceCount() {
+        return blockPlaceCount;
+    }
+    
+    public void setBlockPlaceCount(int blockPlaceCount) {
+        this.blockPlaceCount = blockPlaceCount;
+    }
+    
+    public long getLastPlaceCheckTime() {
+        return lastPlaceCheckTime;
+    }
+    
+    public void setLastPlaceCheckTime(long lastPlaceCheckTime) {
+        this.lastPlaceCheckTime = lastPlaceCheckTime;
+    }
+    
+    // Block break methods
+    public int getBlockBreakCount() {
+        return blockBreakCount;
+    }
+    
+    public void setBlockBreakCount(int blockBreakCount) {
+        this.blockBreakCount = blockBreakCount;
+    }
+    
+    public long getLastBreakCheckTime() {
+        return lastBreakCheckTime;
+    }
+    
+    public void setLastBreakCheckTime(long lastBreakCheckTime) {
+        this.lastBreakCheckTime = lastBreakCheckTime;
     }
 }

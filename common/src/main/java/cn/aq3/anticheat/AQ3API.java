@@ -6,6 +6,8 @@ import cn.aq3.anticheat.hwid.HWIDManager;
 import cn.aq3.anticheat.logging.CheatLogger;
 import cn.aq3.anticheat.player.PlayerDataManager;
 import cn.aq3.anticheat.punishment.PunishmentManager;
+import cn.aq3.anticheat.security.SecurityManager;
+import cn.aq3.anticheat.stats.StatisticsManager;
 import cn.aq3.anticheat.violations.ViolationManager;
 import cn.aq3.anticheat.world.WorldManager;
 import org.jetbrains.annotations.ApiStatus;
@@ -43,6 +45,8 @@ public class AQ3API {
     private PunishmentManager punishmentManager;
     private CheatLogger cheatLogger;
     private HWIDManager hwidManager; // 硬件标识管理器 / Hardware Identification Manager
+    private StatisticsManager statisticsManager; // 统计管理器 / Statistics Manager
+    private SecurityManager securityManager; // 安全管理器 / Security Manager
     private Object bukkitAPI; // Bukkit API引用 / Bukkit API reference
 
     /**
@@ -50,9 +54,23 @@ public class AQ3API {
      * Get AQ3 anti-cheat instance
      *
      * @return AQ3API实例 / AQ3API instance
+     * @throws IllegalStateException 如果API未初始化
      */
     public static AQ3API getInstance() {
+        if (instance == null) {
+            throw new IllegalStateException("AQ3API has not been initialized yet");
+        }
         return instance;
+    }
+    
+    /**
+     * 检查API是否已初始化
+     * Check if API is initialized
+     *
+     * @return true if initialized
+     */
+    public static boolean isInitialized() {
+        return instance != null;
     }
 
     @ApiStatus.Internal
@@ -110,7 +128,9 @@ public class AQ3API {
         configManager = new ConfigManager();
         punishmentManager = new PunishmentManager(100, 500);
         cheatLogger = new CheatLogger("logs/cheat.log");
-        hwidManager = new HWIDManager("plugins/AQ3AntiCheat/hwid.dat"); // 初始化硬件标识管理器 / Initialize Hardware Identification Manager
+        hwidManager = new HWIDManager("plugins/AQ3AntiCheat/hwid.yml"); // 初始化硬件标识管理器 / Initialize Hardware Identification Manager
+        statisticsManager = new StatisticsManager(); // 初始化统计管理器 / Initialize Statistics Manager
+        securityManager = new SecurityManager(); // 初始化安全管理器 / Initialize Security Manager
         
         // 加载配置文件
         // Load configuration files
@@ -191,5 +211,13 @@ public class AQ3API {
     
     public HWIDManager getHWIDManager() {
         return hwidManager;
+    }
+    
+    public StatisticsManager getStatisticsManager() {
+        return statisticsManager;
+    }
+    
+    public SecurityManager getSecurityManager() {
+        return securityManager;
     }
 }
