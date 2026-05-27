@@ -1,52 +1,16 @@
-<div align="center" style="background: #0a0a0a; padding: 60px 20px; border-radius: 20px; margin: 20px 0; position: relative; overflow: hidden;">
-  <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #dc143c, #ff4500, #dc143c);"></div>
-  <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #dc143c, #ff4500, #dc143c);"></div>
-  
-  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; z-index: 1;">
-    <div style="display: flex; align-items: center; justify-content: center; gap: 30px; margin-bottom: 30px;">
-      <div style="width: 140px; height: 140px; background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); border: 4px solid #dc143c; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 60px rgba(220, 20, 60, 0.6), inset 0 0 30px rgba(220, 20, 60, 0.2); position: relative;">
-        <div style="position: absolute; width: 120px; height: 120px; border: 2px solid rgba(220, 20, 60, 0.3); border-radius: 50%; animation: pulse-border 2s ease-in-out infinite;"></div>
-        <svg width="70" height="70" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2L3 7V12C3 16.5 6.84 20.74 12 22C17.16 20.74 21 16.5 21 12V7L12 2Z" fill="#dc143c" stroke="#ff4500" stroke-width="1.5"/>
-          <path d="M9 12L11 14L15 10" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      
-      <div style="text-align: left;">
-        <h1 style="font-size: 72px; font-weight: 900; letter-spacing: -4px; margin: 0; line-height: 1; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-          <span style="color: #ffffff; text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);">AQ</span><span style="color: #dc143c; text-shadow: 0 0 30px rgba(220, 20, 60, 0.8);">3</span>
-        </h1>
-        <div style="font-size: 22px; color: #dc143c; margin-top: 15px; font-weight: 700; letter-spacing: 8px; text-transform: uppercase;">
-          新一代反作弊系统
-        </div>
-      </div>
-    </div>
+<div align="center">
 
-    <div style="font-size: 28px; font-weight: 800; margin: 40px 0 30px 0; color: #ffffff; letter-spacing: 3px;">
-      <span style="color: #dc143c;">⚡</span> 精确检测 · 高性能 · 零误判 <span style="color: #dc143c;">⚡</span>
-    </div>
+# 🛡️ AQ3 反作弊
 
-    <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
-      <span style="padding: 12px 24px; border-radius: 4px; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; background: #1a1a1a; color: #dc143c; border: 2px solid #dc143c;">BUILD</span>
-      <span style="padding: 12px 24px; border-radius: 4px; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; background: #dc143c; color: #ffffff; box-shadow: 0 0 20px rgba(220, 20, 60, 0.5);">PASSING</span>
-      <span style="padding: 12px 24px; border-radius: 4px; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; background: #1a1a1a; color: #ffffff; border: 2px solid #333;">V1.0.0-BETA</span>
-      <span style="padding: 12px 24px; border-radius: 4px; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; background: #1a1a1a; color: #dc143c; border: 2px solid #dc143c;">GPL-3.0</span>
-    </div>
-  </div>
+## 新一代反作弊系统
+
+[![Build](https://img.shields.io/badge/BUILD-passing-red?style=for-the-badge)](https://github.com/XiaoYuan08-Mc/The-New-Generation-AQ3-Anti-Cheat)
+[![Version](https://img.shields.io/badge/VERSION-v1.0.0--BETA-black?style=for-the-badge)](https://github.com/XiaoYuan08-Mc/The-New-Generation-AQ3-Anti-Cheat)
+[![License](https://img.shields.io/badge/LICENSE-GPL--3.0-red?style=for-the-badge)](https://github.com/XiaoYuan08-Mc/The-New-Generation-AQ3-Anti-Cheat/blob/main/LICENSE)
+
+### ⚡ 精确检测 · 高性能 · 零误判 ⚡
+
 </div>
-
-<style>
-@keyframes pulse-border {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.15);
-    opacity: 0;
-  }
-}
-</style>
 
 ---
 
@@ -55,6 +19,8 @@
 **AQ3 反作弊** 是一个面向 Minecraft Paper 服务器的先进反作弊插件。它采用了精确的运动模拟引擎，能够 1:1 复制玩家的所有可能动作，包括基础移动、游泳、击退、蜘蛛网效果、气泡柱以及乘坐船、猪、炽足兽等实体。
 
 本项目已完全开源，代码托管在 [GitHub](https://github.com/XiaoYuan08-Mc/The-New-Generation-AQ3-Anti-Cheat)。
+
+> 🔗 **查看完整设计预览**：[title-design.html](https://htmlpreview.github.io/?https://github.com/XiaoYuan08-Mc/The-New-Generation-AQ3-Anti-Cheat/blob/main/title-design.html)
 
 ---
 
@@ -110,8 +76,8 @@ mvn clean package
 
 ---
 
-<div align="center" style="margin-top: 50px; padding-top: 30px; border-top: 1px solid #333; color: #a0a0b0;">
-  <p>
-    © 2024 AQ3 AntiCheat - 新一代反作弊系统
-  </p>
+<div align="center">
+
+© 2024 AQ3 AntiCheat - 新一代反作弊系统
+
 </div>
