@@ -67,4 +67,4 @@ hwid:
   
   # 允许同一硬件标识的多个账户 (0表示无限制)
   # Allow multiple accounts per hardware identifier (0 for unlimited)
-  max-accounts-per-hwid: 0
+  max-accounts-per-hwid: 2

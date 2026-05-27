@@ -13,6 +13,16 @@ immune-players:
   - "trusted_player_name"
   - "another_trusted_player"
 
+# 被封禁玩家列表
+# Banned players list
+banned-players:
+  # 每个封禁条目包含玩家名称、封禁原因、封禁时间和硬件ID（可选）
+  # Each ban entry includes player name, ban reason, ban time, and hardware ID (optional)
+  #- name: "player_name"
+  #  reason: "作弊行为检测"
+  #  time: "2025-01-01 12:00:00"
+  #  hwid: "abcd1234"
+
 # 处罚设置
 # Punishment Settings
 punishments:
@@ -68,3 +78,10 @@ hwid:
   # 允许同一硬件标识的多个账户 (0表示无限制)
   # Allow multiple accounts per hardware identifier (0 for unlimited)
   max-accounts-per-hwid: 0
+
+# Web服务器设置
+# Web Server Settings
+web:
+  # 启用Web界面删除功能
+  # Enable delete function in web interface
+  enable-delete: true

@@ -22,7 +22,25 @@ checks:
     jesus:
       enabled: true
       max_violations: 10
-      
+    timer:
+      enabled: true
+      max_violations: 10
+    phase:
+      enabled: true
+      max_violations: 10
+    velocity:
+      enabled: true
+      max_violations: 10
+    elytra:
+      enabled: true
+      max_violations: 10
+    teleport:
+      enabled: true
+      max_violations: 10
+    step:
+      enabled: true
+      max_violations: 10
+  
   # 战斗检查
   # Combat Checks
   combat:
@@ -33,7 +51,16 @@ checks:
     reach:
       enabled: true
       max_violations: 10
-      
+    autoclicker:
+      enabled: true
+      max_violations: 10
+    criticals:
+      enabled: true
+      max_violations: 10
+    entityinteract:
+      enabled: true
+      max_violations: 10
+  
   # 物品检查
   # Inventory Checks
   inventory:
@@ -41,7 +68,73 @@ checks:
     fastuse:
       enabled: true
       max_violations: 10
-      
+    inventorymove:
+      enabled: true
+      max_violations: 10
+    itemcheck:
+      enabled: true
+      max_violations: 10
+    itemdrop:
+      enabled: true
+      max_violations: 10
+  
+  # 世界检查
+  # World Checks
+  world:
+    enabled: true
+    scaffold:
+      enabled: true
+      max_violations: 10
+    fastbreak:
+      enabled: true
+      max_violations: 10
+    fastdig:
+      enabled: true
+      max_violations: 10
+    nuker:
+      enabled: true
+      max_violations: 10
+    blockplace:
+      enabled: true
+      max_violations: 10
+    excavation:
+      enabled: true
+      max_violations: 10
+  
+  # 玩家检查
+  # Player Checks
+  player:
+    enabled: true
+    nofall:
+      enabled: true
+      max_violations: 10
+    regen:
+      enabled: true
+      max_violations: 10
+    chat:
+      enabled: true
+      max_violations: 10
+    health:
+      enabled: true
+      max_violations: 10
+    food:
+      enabled: true
+      max_violations: 10
+    experience:
+      enabled: true
+      max_violations: 10
+    interaction:
+      enabled: true
+      max_violations: 10
+  
+  # 网络检查
+  # Network Checks
+  network:
+    enabled: true
+    pingspoof:
+      enabled: true
+      max_violations: 10
+  
   # 机器学习检查
   # Machine Learning Checks
   ml:
@@ -56,5 +149,29 @@ punishments:
   enabled: true
   kick_threshold: 100
   ban_threshold: 500
+  ban_on_detection: true
+  ban_duration: -1
+  ban_reason: "[AQAC] 作弊行为检测"
+  kick_message: "[AQAC] 作弊行为检测"
+  broadcast_ban: true
+  use_advancedban: true
+  advancedban_temp_ban_duration: 86400000
+  advancedban_ban_reason: "[AQAC] 作弊行为检测"
+  advancedban_kick_reason: "[AQAC] 作弊行为检测"
   commands:
     - "kick %player% [AQ3] 作弊行为检测"
+
+# 硬件标识设置
+# Hardware Identifier Settings
+hwid:
+  ban_hwid_on_ban: true
+
+# Web服务器设置
+# Web Server Settings
+web:
+  enabled: true
+  port: 8080
+
+# 灵敏度设置 (1-5, 5为最高灵敏度)
+# Sensitivity settings (1-5, 5 is highest sensitivity)
+sensitivity: 3

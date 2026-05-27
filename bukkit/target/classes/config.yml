@@ -179,6 +179,12 @@ hwid:
   ban-hwid-on-ban: true
   max-accounts-per-hwid: 0
 
+# Web服务器设置
+# Web Server settings
+web:
+  enabled: true
+  port: 8080
+
 # 灵敏度设置 (1-5, 5为最高灵敏度)
 # Sensitivity settings (1-5, 5 is highest sensitivity)
 sensitivity: 3
