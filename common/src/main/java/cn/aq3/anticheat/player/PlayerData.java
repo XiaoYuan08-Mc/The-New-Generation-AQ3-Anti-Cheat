@@ -75,6 +75,16 @@ public class PlayerData {
     private int blockBreakCount;
     private long lastBreakCheckTime;
     
+    // 飞行和冲刺状态
+    // Flying and sprinting state
+    private boolean flying;
+    private boolean sprinting;
+    
+    // 其他时间戳
+    // Other timestamps
+    private long lastBlockPlaceTime;
+    private long lastInteractTime;
+    
     public PlayerData(UUID uuid, String name) {
         this.uuid = uuid;
         this.name = name;
@@ -127,6 +137,12 @@ public class PlayerData {
         this.lastPlaceCheckTime = 0;
         this.blockBreakCount = 0;
         this.lastBreakCheckTime = 0;
+        
+        // 初始化飞行和冲刺状态
+        this.flying = false;
+        this.sprinting = false;
+        this.lastBlockPlaceTime = 0;
+        this.lastInteractTime = 0;
     }
     
     // Getters and setters
@@ -565,5 +581,41 @@ public class PlayerData {
     
     public void setLastBreakCheckTime(long lastBreakCheckTime) {
         this.lastBreakCheckTime = lastBreakCheckTime;
+    }
+    
+    // Flying methods
+    public boolean isFlying() {
+        return flying;
+    }
+    
+    public void setFlying(boolean flying) {
+        this.flying = flying;
+    }
+    
+    // Sprinting methods
+    public boolean isSprinting() {
+        return sprinting;
+    }
+    
+    public void setSprinting(boolean sprinting) {
+        this.sprinting = sprinting;
+    }
+    
+    // Block place time methods
+    public long getLastBlockPlaceTime() {
+        return lastBlockPlaceTime;
+    }
+    
+    public void setLastBlockPlaceTime(long lastBlockPlaceTime) {
+        this.lastBlockPlaceTime = lastBlockPlaceTime;
+    }
+    
+    // Interact time methods
+    public long getLastInteractTime() {
+        return lastInteractTime;
+    }
+    
+    public void setLastInteractTime(long lastInteractTime) {
+        this.lastInteractTime = lastInteractTime;
     }
 }

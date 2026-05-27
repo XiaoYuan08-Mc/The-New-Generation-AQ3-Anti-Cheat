@@ -11,11 +11,21 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDamageEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityRegainHealthEvent;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.player.PlayerExpChangeEvent;
+import org.bukkit.event.player.PlayerGameModeChangeEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerToggleFlightEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
+import org.bukkit.event.player.PlayerToggleSprintEvent;
 
 import java.util.List;
 import java.util.UUID;
@@ -50,6 +60,8 @@ public class PlayerListener implements Listener {
         
         // 创建玩家数据
         PlayerData playerData = new PlayerData(playerUUID, playerName);
+        playerData.setHealth(player.getHealth());
+        playerData.setFoodLevel(player.getFoodLevel());
         AQ3API.getInstance().getPlayerDataManager().addPlayerData(playerData);
         
         // 为玩家创建世界副本
@@ -129,6 +141,45 @@ public class PlayerListener implements Listener {
     }
     
     @EventHandler
+    public void onPlayerToggleSprint(PlayerToggleSprintEvent event) {
+        Player player = event.getPlayer();
+        UUID playerUUID = player.getUniqueId();
+        
+        PlayerData playerData = AQ3API.getInstance().getPlayerDataManager().getPlayerData(playerUUID);
+        
+        if (playerData != null) {
+            playerData.setSprinting(event.isSprinting());
+            performChecks(playerUUID, playerData);
+        }
+    }
+    
+    @EventHandler
+    public void onPlayerToggleFlight(PlayerToggleFlightEvent event) {
+        Player player = event.getPlayer();
+        UUID playerUUID = player.getUniqueId();
+        
+        PlayerData playerData = AQ3API.getInstance().getPlayerDataManager().getPlayerData(playerUUID);
+        
+        if (playerData != null) {
+            playerData.setFlying(event.isFlying());
+            performChecks(playerUUID, playerData);
+        }
+    }
+    
+    @EventHandler
+    public void onPlayerGameModeChange(PlayerGameModeChangeEvent event) {
+        Player player = event.getPlayer();
+        UUID playerUUID = player.getUniqueId();
+        
+        PlayerData playerData = AQ3API.getInstance().getPlayerDataManager().getPlayerData(playerUUID);
+        
+        if (playerData != null) {
+            // 如果是合法的游戏模式切换，重置某些检查
+            performChecks(playerUUID, playerData);
+        }
+    }
+    
+    @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
         // 检查是否是玩家攻击实体
         // Check if player is attacking entity
@@ -145,6 +196,90 @@ public class PlayerListener implements Listener {
                 // 执行检查
                 performChecks(playerUUID, playerData);
             }
+        }
+    }
+    
+    @EventHandler
+    public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
+        Player player = event.getPlayer();
+        UUID playerUUID = player.getUniqueId();
+        
+        PlayerData playerData = AQ3API.getInstance().getPlayerDataManager().getPlayerData(playerUUID);
+        
+        if (playerData != null) {
+            playerData.setLastInteractTime(System.currentTimeMillis());
+            performChecks(playerUUID, playerData);
+        }
+    }
+    
+    @EventHandler
+    public void onPlayerInteract(PlayerInteractEvent event) {
+        Player player = event.getPlayer();
+        UUID playerUUID = player.getUniqueId();
+        
+        PlayerData playerData = AQ3API.getInstance().getPlayerDataManager().getPlayerData(playerUUID);
+        
+        if (playerData != null) {
+            playerData.setLastUseTime(System.currentTimeMillis());
+            performChecks(playerUUID, playerData);
+        }
+    }
+    
+    @EventHandler
+    public void onPlayerItemConsume(PlayerItemConsumeEvent event) {
+        Player player = event.getPlayer();
+        UUID playerUUID = player.getUniqueId();
+        
+        PlayerData playerData = AQ3API.getInstance().getPlayerDataManager().getPlayerData(playerUUID);
+        
+        if (playerData != null) {
+            playerData.setLastEatTime(System.currentTimeMillis());
+            performChecks(playerUUID, playerData);
+        }
+    }
+    
+    @EventHandler
+    public void onFoodLevelChange(FoodLevelChangeEvent event) {
+        if (event.getEntity() instanceof Player) {
+            Player player = (Player) event.getEntity();
+            UUID playerUUID = player.getUniqueId();
+            
+            PlayerData playerData = AQ3API.getInstance().getPlayerDataManager().getPlayerData(playerUUID);
+            
+            if (playerData != null) {
+                playerData.setFoodLevel(event.getFoodLevel());
+                performChecks(playerUUID, playerData);
+            }
+        }
+    }
+    
+    @EventHandler
+    public void onEntityRegainHealth(EntityRegainHealthEvent event) {
+        if (event.getEntity() instanceof Player) {
+            Player player = (Player) event.getEntity();
+            UUID playerUUID = player.getUniqueId();
+            
+            PlayerData playerData = AQ3API.getInstance().getPlayerDataManager().getPlayerData(playerUUID);
+            
+            if (playerData != null) {
+                playerData.setLastHealTime(System.currentTimeMillis());
+                playerData.setHealth(player.getHealth() + event.getAmount());
+                performChecks(playerUUID, playerData);
+            }
+        }
+    }
+    
+    @EventHandler
+    public void onPlayerExpChange(PlayerExpChangeEvent event) {
+        Player player = event.getPlayer();
+        UUID playerUUID = player.getUniqueId();
+        
+        PlayerData playerData = AQ3API.getInstance().getPlayerDataManager().getPlayerData(playerUUID);
+        
+        if (playerData != null) {
+            double newExp = player.getExp() + event.getAmount();
+            playerData.setExperience(newExp);
+            performChecks(playerUUID, playerData);
         }
     }
     
@@ -175,15 +310,33 @@ public class PlayerListener implements Listener {
         PlayerData playerData = AQ3API.getInstance().getPlayerDataManager().getPlayerData(playerUUID);
         
         if (playerData != null) {
+            // 更新破坏方块计数
+            playerData.setBlockBreakCount(playerData.getBlockBreakCount() + 1);
+            playerData.setLastBreakCheckTime(System.currentTimeMillis());
+            
             // 通知FastBreak检查完成破坏方块
             FastBreakCheck fastBreakCheck = (FastBreakCheck) AQ3API.getInstance().getCheckManager().getCheck(FastBreakCheck.class);
             if (fastBreakCheck != null) {
                 fastBreakCheck.completeBreakingBlock(playerUUID.toString());
             }
             
-            // 通知Nuker检查方块破坏事件
-            // Notify Nuker check of block break event
-            // This would be better handled through ProtocolLib in a full implementation
+            // 执行检查
+            performChecks(playerUUID, playerData);
+        }
+    }
+    
+    @EventHandler
+    public void onBlockPlace(BlockPlaceEvent event) {
+        Player player = event.getPlayer();
+        UUID playerUUID = player.getUniqueId();
+        
+        PlayerData playerData = AQ3API.getInstance().getPlayerDataManager().getPlayerData(playerUUID);
+        
+        if (playerData != null) {
+            // 更新方块放置计数
+            playerData.setBlockPlaceCount(playerData.getBlockPlaceCount() + 1);
+            playerData.setLastPlaceCheckTime(System.currentTimeMillis());
+            playerData.setLastBlockPlaceTime(System.currentTimeMillis());
             
             // 执行检查
             performChecks(playerUUID, playerData);
