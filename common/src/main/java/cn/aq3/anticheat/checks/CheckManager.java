@@ -9,6 +9,7 @@ import cn.aq3.anticheat.checks.network.PingSpoofCheck;
 import cn.aq3.anticheat.checks.player.*;
 import cn.aq3.anticheat.checks.world.*;
 import cn.aq3.anticheat.checks.probability.ProbabilityCheck;
+import cn.aq3.anticheat.checks.movement.MatrixGrimMovementCheck;
 import cn.aq3.anticheat.ml.CheatPatternDetector;
 import cn.aq3.anticheat.player.PlayerData;
 
@@ -78,6 +79,9 @@ public class CheckManager {
         checks.add(new GrimMoveCheck());
         checks.add(new GrimCombatCheck());
         checks.add(new GrimWorldCheck());
+        
+        // Matrix + GrimAC 综合检测 v3.0
+        checks.add(new MatrixGrimMovementCheck());
     }
     
     /**
