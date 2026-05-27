@@ -1,9 +1,9 @@
 name: AQ3AntiCheat
-version: 1.3.0
+version: 2.0.0
 main: cn.aq3.anticheat.bukkit.AQ3Bukkit
 api-version: 1.21
 author: AQ3DevTeam
-description: 新一代反作弊AQ3 - Advanced Anti-Cheat System with GrimAc-style detection
+description: 新一代反作弊AQ3 - GrimAC风格完整检测系统
 website: https://github.com/XiaoYuan08-Mc/The-New-Generation-AQ3-Anti-Cheat
 
 commands:

@@ -35,6 +35,7 @@ public class CheckManager {
      * Register all checks
      */
     private void registerChecks() {
+        // 原有检测
         checks.add(new SpeedCheck());
         checks.add(new FlyCheck());
         checks.add(new JesusCheck());
@@ -68,10 +69,15 @@ public class CheckManager {
         checks.add(new FastDigCheck());
         checks.add(new XrayCheck());
         
-        // GrimAc风格的新检测
+        // GrimAc风格的新检测 v1.3.0
         checks.add(new PrecisionReachCheck());
         checks.add(new ProbabilityCheck());
         checks.add(new PredictionMovementCheck());
+        
+        // GrimAc风格的综合检测 v2.0
+        checks.add(new GrimMoveCheck());
+        checks.add(new GrimCombatCheck());
+        checks.add(new GrimWorldCheck());
     }
     
     /**
