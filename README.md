@@ -5,10 +5,11 @@
 ## 新一代反作弊系统
 
 [![Build](https://img.shields.io/badge/Build-passing-red?style=for-the-badge)](https://github.com/XiaoYuan08-Mc/The-New-Generation-AQ3-Anti-Cheat)
-[![Version](https://img.shields.io/badge/VERSION-1.1.0-black?style=for-the-badge)](https://github.com/XiaoYuan08-Mc/The-New-Generation-AQ3-Anti-Cheat)
+[![Version](https://img.shields.io/badge/VERSION-1.2.0-black?style=for-the-badge)](https://github.com/XiaoYuan08-Mc/The-New-Generation-AQ3-Anti-Cheat)
+[![Minecraft](https://img.shields.io/badge/Minecraft-1.21.x-red?style=for-the-badge)](https://github.com/XiaoYuan08-Mc/The-New-Generation-AQ3-Anti-Cheat)
 [![License](https://img.shields.io/badge/LICENSE-GPL--3.0-red?style=for-the-badge)](https://github.com/XiaoYuan08-Mc/The-New-Generation-AQ3-Anti-Cheat/blob/main/LICENSE)
 
-### ⚡ 精确检测 · 高性能 · 零误判 ⚡
+### ⚡ 精确检测 · 高性能 · 零误判 · 1.21.x支持 ⚡
 
 </div>
 
@@ -17,6 +18,8 @@
 ## 📋 项目简介
 
 **AQ3 反作弊** 是一个面向 Minecraft Paper 服务器的先进反作弊插件。它采用了精确的运动模拟引擎，能够 1:1 复制玩家的所有可能动作，包括基础移动、游泳、击退、蜘蛛网效果、气泡柱以及乘坐船、猪、炽足兽等实体。
+
+**支持版本**: Minecraft 1.21.x (Paper API 1.21.3-R0.1)
 
 本项目已完全开源，代码托管在 [GitHub](https://github.com/XiaoYuan08-Mc/The-New-Generation-AQ3-Anti-Cheat)。
 
@@ -130,7 +133,13 @@ AQ3 AntiCheat
 
 ## 📝 更新日志
 
-### v1.1.0 (最新)
+### v1.2.0 (最新)
+- 🎮 更新 支持 Minecraft 1.21.x
+- 📦 升级 Paper API 到 1.21.3-R0.1-SNAPSHOT
+- 🔧 优化 插件配置，api-version 设定为 1.21
+- 📝 更新 README.md，添加 1.21.x 支持说明
+
+### v1.1.0
 - ✨ 新增 X射线（Xray）检测模块
 - 🛡️ 改进 防击退（AntiKB）检测系统
 - 📊 增强 PlayerData，添加移动历史记录

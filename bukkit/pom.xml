@@ -7,7 +7,7 @@
     <parent>
         <groupId>cn.aq3</groupId>
         <artifactId>aq3-anticheat-parent</artifactId>
-        <version>1.1.0</version>
+        <version>1.2.0</version>
     </parent>
 
     <artifactId>aq3-anticheat-bukkit</artifactId>
@@ -17,7 +17,7 @@
         <dependency>
             <groupId>cn.aq3</groupId>
             <artifactId>aq3-anticheat-common</artifactId>
-            <version>1.1.0</version>
+            <version>1.2.0</version>
         </dependency>
         
         <!-- Paper API -->

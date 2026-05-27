@@ -1,9 +1,9 @@
 name: AQ3AntiCheat
-version: 1.1.0
+version: 1.2.0
 main: cn.aq3.anticheat.bukkit.AQ3Bukkit
-api-version: 1.13
+api-version: 1.21
 author: AQ3DevTeam
-description: 新一代反作弊AQ3 - Advanced Anti-Cheat System
+description: 新一代反作弊AQ3 - Advanced Anti-Cheat System for Minecraft 1.21.x
 website: https://github.com/XiaoYuan08-Mc/The-New-Generation-AQ3-Anti-Cheat
 
 commands:
