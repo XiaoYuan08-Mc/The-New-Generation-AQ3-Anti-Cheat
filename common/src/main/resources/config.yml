@@ -149,6 +149,10 @@ checks:
       enabled: true
       max_violations: 10
       threshold: 0.1
+    xray:
+      enabled: true
+      max_violations: 15
+      threshold: 0.05
 
   # 网络检查
   # Network Checks

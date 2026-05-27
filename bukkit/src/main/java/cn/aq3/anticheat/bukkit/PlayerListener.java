@@ -3,6 +3,7 @@ package cn.aq3.anticheat.bukkit;
 import cn.aq3.anticheat.AQ3API;
 import cn.aq3.anticheat.checks.Check;
 import cn.aq3.anticheat.checks.world.FastBreakCheck;
+import cn.aq3.anticheat.checks.world.XrayCheck;
 import cn.aq3.anticheat.player.PlayerData;
 import cn.aq3.anticheat.violations.ViolationManager;
 import cn.aq3.anticheat.world.WorldManager;
@@ -83,6 +84,12 @@ public class PlayerListener implements Listener {
         
         // 移除玩家世界副本
         AQ3API.getInstance().getWorldManager().removeWorldForPlayer(playerUUID);
+        
+        // 重置Xray检查数据
+        XrayCheck xrayCheck = (XrayCheck) AQ3API.getInstance().getCheckManager().getCheck(XrayCheck.class);
+        if (xrayCheck != null) {
+            xrayCheck.resetPlayerData(playerUUID.toString());
+        }
     }
     
     @EventHandler
@@ -318,6 +325,12 @@ public class PlayerListener implements Listener {
             FastBreakCheck fastBreakCheck = (FastBreakCheck) AQ3API.getInstance().getCheckManager().getCheck(FastBreakCheck.class);
             if (fastBreakCheck != null) {
                 fastBreakCheck.completeBreakingBlock(playerUUID.toString());
+            }
+            
+            // 通知Xray检查记录破坏的方块
+            XrayCheck xrayCheck = (XrayCheck) AQ3API.getInstance().getCheckManager().getCheck(XrayCheck.class);
+            if (xrayCheck != null) {
+                xrayCheck.recordBlockMined(playerUUID.toString(), event.getBlock().getType().name());
             }
             
             // 执行检查
